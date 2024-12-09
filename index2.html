@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show/Hide Form Fields</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .hidden-field {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>User Information Form</h2>
+
+    <form id="userForm">
+        <label for="role">Select your role:</label>
+        <select id="role">
+            <option value="">-- Select an option --</option>
+            <option value="student">Student</option>
+            <option value="professional">Professional</option>
+        </select>
+
+        <div id="studentField" class="hidden-field">
+            <label for="university">University Name:</label>
+            <input type="text" id="university" name="university" placeholder="Enter University Name">
+        </div>
+
+        <div id="professionalField" class="hidden-field">
+            <label for="company">Company Name:</label>
+            <input type="text" id="company" name="company" placeholder="Enter Company Name">
+        </div>
+
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        // jQuery to show/hide fields based on selection
+        $(document).ready(function() {
+            $('#role').change(function() {
+                var selectedRole = $(this).val();
+
+                // Hide both fields initially
+                $('#studentField').hide();
+                $('#professionalField').hide();
+
+                // Show the relevant field based on the selection
+                if (selectedRole === 'student') {
+                    $('#studentField').show();
+                } else if (selectedRole === 'professional') {
+                    $('#professionalField').show();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
